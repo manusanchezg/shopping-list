@@ -1,21 +1,21 @@
 export const SEED_USERS = [
     {
-        fullName: 'Fernando Herrera',
-        email: 'fernando@google.com',
+        fullName: 'Manuel Sanchez',
+        email: 'manuelsanchez@gmail.com',
         password: '123456',
         roles: ['admin','superUser','user'],
         isActive: true
     },
     {
-        fullName: 'Melissa Flores',
-        email: 'melissa@google.com',
+        fullName: 'Aramis Cohen',
+        email: 'aramister@gmail.com',
         password: '123456',
         roles: ['user'],
         isActive: true
     },
     {
-        fullName: 'Hernando Vallejo',
-        email: 'hernando@google.com',
+        fullName: 'Aaron Cohen',
+        email: 'notaaron@gmail.com',
         password: '123456',
         roles: ['user'],
         isActive: false
@@ -95,7 +95,7 @@ export const SEED_ITEMS = [
     },
     {
         name: "Brussels sprouts",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
@@ -105,32 +105,32 @@ export const SEED_ITEMS = [
     },
     {
         name: "Asparagus",
-        quantityUnits: null,
+        quantityUnits: "package",
         category: "vegetables"
     },
     {
         name: "Broccoli",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Bell peppers (green, red, orange, yellow or roasted in a jar)",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "vegetables"
     },
     {
         name: "Cabbage (green or red)",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Carrots",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "vegetables"
     },
     {
         name: "Cauliflower",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
@@ -140,12 +140,12 @@ export const SEED_ITEMS = [
     },
     {
         name: "Corn",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Cucumber",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "vegetables"
     },
     {
@@ -155,22 +155,22 @@ export const SEED_ITEMS = [
     },
     {
         name: "Endive",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Garlic",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Ginger",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "vegetables"
     },
     {
         name: "Green beans (not canned)",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "vegetables"
     },
     {
@@ -180,17 +180,17 @@ export const SEED_ITEMS = [
     },
     {
         name: "Green onion",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "vegetables"
     },
     {
         name: "Jalapeños",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "vegetables"
     },
     {
         name: "Kale",
-        quantityUnits: null,
+        quantityUnits: "package",
         category: "vegetables"
     },
     {
@@ -205,7 +205,7 @@ export const SEED_ITEMS = [
     },
     {
         name: "Onions",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "vegetables"
     },
     {
@@ -235,7 +235,7 @@ export const SEED_ITEMS = [
     },
     {
         name: "Shiitake mushrooms",
-        quantityUnits: null,
+        quantityUnits: "package",
         category: "vegetables"
     },
     {
@@ -260,27 +260,27 @@ export const SEED_ITEMS = [
     },
     {
         name: "Zucchini",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "vegetables"
     },
     {
         name: "Apples",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Blackberries",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "fruits"
     },
     {
         name: "Blueberries",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "fruits"
     },
     {
         name: "Cherries",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
@@ -290,32 +290,32 @@ export const SEED_ITEMS = [
     },
     {
         name: "Grapes",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Lemons",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Limes",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Peaches (not packed in syrup)",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Pears",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
         name: "Pineapple",
-        quantityUnits: null,
+        quantityUnits: "unit",
         category: "fruits"
     },
     {
@@ -325,17 +325,17 @@ export const SEED_ITEMS = [
     },
     {
         name: "Raspberries",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "fruits"
     },
     {
         name: "Strawberries",
-        quantityUnits: null,
+        quantityUnits: "g",
         category: "fruits"
     },
     {
         name: "Tangerine",
-        quantityUnits: null,
+        quantityUnits: "kg",
         category: "fruits"
     },
     {
