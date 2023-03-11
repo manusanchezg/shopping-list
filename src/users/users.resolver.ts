@@ -1,3 +1,4 @@
+import { ParseUUIDPipe, UseGuards } from '@nestjs/common';
 import {
   Resolver,
   Query,
@@ -8,14 +9,19 @@ import {
   ResolveField,
   Parent,
 } from '@nestjs/graphql';
-import { UsersService } from './users.service';
+
 import { User } from './entities/user.entity';
-import { CreateUserInput, UpdateUserInput } from './dto/inputs';
+import { Item } from 'src/items/entities';
+
+import { UpdateUserInput } from './dto/inputs';
 import { ValidRolesArgs } from './dto/args/roles.arg';
-import { ParseUUIDPipe, UseGuards } from '@nestjs/common';
+import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
+
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { ValidRoles } from 'src/auth/enums/valid-roles.enum';
+
+import { UsersService } from './users.service';
 import { ItemsService } from 'src/items/items.service';
 
 @Resolver(() => User)
@@ -58,7 +64,20 @@ export class UsersResolver {
   }
 
   @ResolveField(() => Int, { name: 'itemCount' })
-  async itemCount(@Parent() user: User): Promise<number> {
+  async itemCount(
+    @CurrentUser([ValidRoles.admin]) adminUser: User,
+    @Parent() user: User,
+  ): Promise<number> {
     return this.itemsService.itemCountByUser(user);
+  }
+
+  @ResolveField(() => [Item], { name: 'items' })
+  async getItemsByUser(
+    @CurrentUser([ValidRoles.admin]) adminUser: User,
+    @Parent() user: User,
+    @Args() paginationArgs: PaginationArgs,
+    @Args() searchArgs: SearchArgs,
+  ): Promise<Item[]> {
+    return this.itemsService.findAll(user, paginationArgs, searchArgs);
   }
 }
