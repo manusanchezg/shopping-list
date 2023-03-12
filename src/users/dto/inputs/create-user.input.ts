@@ -9,7 +9,7 @@ export class CreateUserInput {
 
   @IsNotEmpty()
   @Field(() => String)
-  fullName: string;
+  full_name: string;
 
   @MinLength(6)
   @Field(() => String)

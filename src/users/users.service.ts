@@ -13,6 +13,7 @@ import { SignUpInput } from '../auth/dto/inputs';
 import { UpdateUserInput, CreateUserInput } from './dto/inputs';
 import { User } from './entities/user.entity';
 import { ValidRoles } from 'src/auth/enums/valid-roles.enum';
+import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
 
 @Injectable()
 export class UsersService {
@@ -44,7 +45,13 @@ export class UsersService {
     throw new InternalServerErrorException('Please check server logs');
   }
 
-  async findAll(roles: ValidRoles[]): Promise<User[]> {
+  async findAll(
+    roles: ValidRoles[],
+    paginationArgs: PaginationArgs,
+    searchArgs: SearchArgs,
+  ): Promise<User[]> {
+    const { limit, offset } = paginationArgs;
+    const { search } = searchArgs;
     if (roles.length === 0)
       return this.usersRepository.find({
         //? not neccessary because we have lazy in lastUpdatedBy
@@ -52,15 +59,20 @@ export class UsersService {
         //   lastUpdateBy: true,
         // },
       });
-    return (
-      this.usersRepository
-        .createQueryBuilder()
-        // looks for the role value in the DB Array
-        .andWhere('ARRAY[roles] && ARRAY[:...roles]')
-        // helps for SQL injection, same names as above ...roles
-        .setParameter('roles', roles)
-        .getMany()
-    );
+    const queryBuilder = this.usersRepository
+      .createQueryBuilder()
+      .take(limit)
+      .skip(offset)
+      // looks for the role value in the DB Array
+      .andWhere('ARRAY[roles] && ARRAY[:...roles]')
+      // helps for SQL injection, same names as above ...roles
+      .setParameter('roles', roles);
+      if (search) {
+      queryBuilder.andWhere('LOWER(full_name) like :full_name', {
+        full_name: `%${search.toLowerCase()}%`,
+      });
+    }
+    return queryBuilder.getMany();
   }
 
   async findOneByEmail(email: string): Promise<User> {
@@ -81,11 +93,11 @@ export class UsersService {
         ...updateUserInput,
         id,
       });
-      console.log(updatedBy)
-      user.lastUpdateBy = updatedBy
+      console.log(updatedBy);
+      user.lastUpdateBy = updatedBy;
       return await this.usersRepository.save(user);
     } catch (error) {
-      this.handleDBErrors(error)
+      this.handleDBErrors(error);
     }
   }
 

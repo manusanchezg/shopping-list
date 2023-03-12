@@ -4,14 +4,21 @@
 
 type User {
   id: ID!
-  fullName: String!
+  full_name: String!
   email: String!
   password: String!
-  roles: [String!]!
+  roles: [ValidRoles!]!
   isActive: Boolean!
   lastUpdateBy: User
   itemCount: Int!
   items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
+}
+
+"""Valid roles for the users."""
+enum ValidRoles {
+  admin
+  user
+  superUser
 }
 
 type Item {
@@ -28,17 +35,10 @@ type AuthResponse {
 
 type Query {
   revalidate: AuthResponse!
-  users(roles: [ValidRoles!] = []): [User!]!
+  users(roles: [ValidRoles!] = [], offset: Int = 0, limit: Int = 10, search: String): [User!]!
   user(id: ID!): User!
   items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
   item(id: ID!): Item!
-}
-
-"""Valid roles for the users."""
-enum ValidRoles {
-  admin
-  user
-  superUser
 }
 
 type Mutation {
@@ -56,7 +56,7 @@ type Mutation {
 
 input SignUpInput {
   email: String!
-  fullName: String!
+  full_name: String!
   password: String!
 }
 
@@ -67,7 +67,7 @@ input LogInInput {
 
 input UpdateUserInput {
   email: String
-  fullName: String
+  full_name: String
   password: String
   id: ID!
   roles: [ValidRoles!]

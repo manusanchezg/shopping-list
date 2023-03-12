@@ -1,20 +1,20 @@
 export const SEED_USERS = [
     {
-        fullName: 'Manuel Sanchez',
+        full_name: 'Manuel Sanchez',
         email: 'manuelsanchez@gmail.com',
         password: '123456',
         roles: ['admin','superUser','user'],
         isActive: true
     },
     {
-        fullName: 'Aramis Cohen',
+        full_name: 'Aramis Cohen',
         email: 'aramister@gmail.com',
         password: '123456',
         roles: ['user'],
         isActive: true
     },
     {
-        fullName: 'Aaron Cohen',
+        full_name: 'Aaron Cohen',
         email: 'notaaron@gmail.com',
         password: '123456',
         roles: ['user'],

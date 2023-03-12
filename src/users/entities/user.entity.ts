@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ValidRoles } from 'src/auth/enums/valid-roles.enum';
 import { Item } from 'src/items/entities';
 import {
   Column,
@@ -18,7 +19,7 @@ export class User {
 
   @Column()
   @Field(() => String)
-  fullName: string;
+  full_name: string;
 
   @Column({ unique: true })
   @Field(() => String)
@@ -29,8 +30,8 @@ export class User {
   password: string;
 
   @Column({ type: 'text', array: true, default: ['user'] })
-  @Field(() => [String])
-  roles: string[];
+  @Field(() => [ValidRoles])
+  roles: ValidRoles[];
 
   @Column({ type: 'boolean', default: true })
   @Field(() => Boolean)
