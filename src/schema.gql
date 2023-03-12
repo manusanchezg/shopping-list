@@ -12,6 +12,8 @@ type User {
   lastUpdateBy: User
   itemCount: Int!
   items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
+  lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
+  listCount: Int!
 }
 
 """Valid roles for the users."""
@@ -28,6 +30,12 @@ type Item {
   user: User!
 }
 
+type List {
+  id: ID!
+  name: String!
+  user: User!
+}
+
 type AuthResponse {
   token: String!
   user: User!
@@ -39,14 +47,8 @@ type Query {
   user(id: ID!): User!
   items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
   item(id: ID!): Item!
-  lists: [List!]!
-  list(id: Int!): List!
-}
-
-type List {
-  id: ID!
-  name: String!
-  user: User!
+  lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
+  list(id: ID!): List!
 }
 
 type Mutation {
@@ -57,12 +59,12 @@ type Mutation {
   createItem(createItemInput: CreateItemInput!): Item!
   updateItem(updateItemInput: UpdateItemInput!): Item!
   removeItem(id: ID!): Item!
+  createList(createListInput: CreateListInput!): List!
+  updateList(updateListInput: UpdateListInput!): List!
+  removeList(id: ID!): List!
 
   """executes the construction of the database"""
   executeSeed: Boolean!
-  createList(createListInput: CreateListInput!): List!
-  updateList(updateListInput: UpdateListInput!): List!
-  removeList(id: Int!): List!
 }
 
 input SignUpInput {
@@ -97,12 +99,10 @@ input UpdateItemInput {
 }
 
 input CreateListInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateListInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  id: ID!
 }

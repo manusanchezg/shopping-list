@@ -1,10 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
-import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
+
+import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
 import { UpdateListInput, CreateListInput } from './dto/inputs';
+
 import { List } from './entities/list.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ListsService {
@@ -70,5 +72,15 @@ export class ListsService {
     await this.listsRepository.remove(list);
 
     return { ...list, id };
+  }
+
+  async listsCountByUser(user: User): Promise<number> {
+    return this.listsRepository.count({
+      where: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
   }
 }
