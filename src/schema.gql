@@ -28,23 +28,26 @@ type Item {
   name: String!
   quantityUnits: String
   user: User!
+  listItem: [ListItem!]!
 }
 
 type List {
   id: ID!
   name: String!
   user: User!
-}
-
-type AuthResponse {
-  token: String!
-  user: User!
+  listItem: [ListItem!]!
 }
 
 type ListItem {
   id: ID!
   quantity: Float!
   completed: Boolean!
+  item: Item!
+}
+
+type AuthResponse {
+  token: String!
+  user: User!
 }
 
 type Query {
