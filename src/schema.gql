@@ -58,7 +58,7 @@ type Query {
   item(id: ID!): Item!
   lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
   list(id: ID!): List!
-  listItem(id: Int!): ListItem!
+  listItem: [ListItem!]!
 }
 
 type Mutation {
@@ -76,8 +76,6 @@ type Mutation {
   """executes the construction of the database"""
   executeSeed: Boolean!
   createListItem(createListItemInput: CreateListItemInput!): ListItem!
-  updateListItem(updateListItemInput: UpdateListItemInput!): ListItem!
-  removeListItem(id: Int!): ListItem!
 }
 
 input SignUpInput {
@@ -121,12 +119,8 @@ input UpdateListInput {
 }
 
 input CreateListItemInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateListItemInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  quantity: Float = 0
+  completed: Boolean = false
+  listId: ID!
+  itemId: ID!
 }
