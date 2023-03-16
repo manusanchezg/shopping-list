@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
+import { List } from 'src/lists/entities/list.entity';
 import { Repository } from 'typeorm';
 import { CreateListItemInput } from './dto/create-list-item.input';
 import { UpdateListItemInput } from './dto/update-list-item.input';
@@ -24,12 +26,41 @@ export class ListItemService {
     return await this.listItemsRepository.save(newListItem);
   }
 
-  findAll() {
-    return `This action returns all listItem`;
+  async findAll(
+    list: List,
+    paginationArgs: PaginationArgs,
+    searchArgs: SearchArgs,
+  ): Promise<ListItem[]> {
+    const { limit, offset } = paginationArgs;
+    const { search } = searchArgs;
+
+    const queryBuilder = this.listItemsRepository
+      .createQueryBuilder()
+      .take(limit)
+      .skip(offset)
+      .where(`"listId" = :listId`, { listId: list.id });
+
+    if (search) {
+      queryBuilder.andWhere('LOWER(item.name) like :name', {
+        name: `%${search.toLowerCase()}%`,
+      });
+    }
+
+    return queryBuilder.getMany();
+  }
+
+  async countListItemsByList(list: List): Promise<number> {
+    return this.listItemsRepository.count({
+      where: {
+        list: {
+          id: list.id
+        }
+      }
+    })
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} listItem`;
+    return this.listItemsRepository.find();
   }
 
   update(id: number, updateListItemInput: UpdateListItemInput) {

@@ -20,7 +20,7 @@ export class ListItem {
   completed: boolean;
 
   @ManyToOne(() => List, (list) => list.listItem, { lazy: true })
-  // @Field(() => List)
+  @Field(() => List)
   list: List;
 
   @ManyToOne(() => Item, (item) => item.listItem, { lazy: true })
