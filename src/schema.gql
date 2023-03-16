@@ -60,6 +60,7 @@ type Query {
   item(id: ID!): Item!
   lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
   list(id: ID!): List!
+  listItem(id: ID!): ListItem!
 }
 
 type Mutation {

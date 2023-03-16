@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationArgs, SearchArgs } from 'src/common/dto/args';
 import { List } from 'src/lists/entities/list.entity';
@@ -53,18 +53,22 @@ export class ListItemService {
     return this.listItemsRepository.count({
       where: {
         list: {
-          id: list.id
-        }
-      }
-    })
+          id: list.id,
+        },
+      },
+    });
   }
 
-  findOne(id: number) {
-    return this.listItemsRepository.find();
+  async findOne(id: string): Promise<ListItem> {
+    const listItem = await this.listItemsRepository.findOneBy({ id });
+    if (!listItem)
+      throw new NotFoundException(`List item with id #${id} not found`);
+
+    return listItem;
   }
 
-  update(id: number, updateListItemInput: UpdateListItemInput) {
-    return `This action updates a #${id} listItem`;
+  update(id: string, updateListItemInput: UpdateListItemInput) {
+    return this.listItemsRepository.findOneBy({ id });
   }
 
   remove(id: number) {
