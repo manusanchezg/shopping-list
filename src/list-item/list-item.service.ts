@@ -67,8 +67,23 @@ export class ListItemService {
     return listItem;
   }
 
-  update(id: string, updateListItemInput: UpdateListItemInput) {
-    return this.listItemsRepository.findOneBy({ id });
+  async update(
+    id: string,
+    updateListItemInput: UpdateListItemInput,
+  ): Promise<ListItem> {
+    const { listId, itemId, ...rest } = updateListItemInput;
+
+    const queryBuilder = this.listItemsRepository
+      .createQueryBuilder()
+      .update()
+      .set(rest)
+      .where('id = :id', { id });
+
+    if (listId) queryBuilder.set({ list: { id: listId } });
+    if (itemId) queryBuilder.set({ item: { id: itemId } });
+
+    await queryBuilder.execute();
+    return this.findOne(id);
   }
 
   remove(id: number) {

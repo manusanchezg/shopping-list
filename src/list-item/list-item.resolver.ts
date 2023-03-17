@@ -29,10 +29,12 @@ export class ListItemResolver {
     return this.listItemService.findOne(id);
   }
 
-  // @Mutation(() => ListItem)
-  // updateListItem(@Args('updateListItemInput') updateListItemInput: UpdateListItemInput) {
-  //   return this.listItemService.update(updateListItemInput.id, updateListItemInput);
-  // }
+  @Mutation(() => ListItem, {name: 'updateListItem'})
+  updateListItem(
+    @Args('updateListItemInput') updateListItemInput: UpdateListItemInput
+    ): Promise<ListItem> {
+    return this.listItemService.update(updateListItemInput.id, updateListItemInput);
+  }
 
   // @Mutation(() => ListItem)
   // removeListItem(@Args('id', { type: () => Int }) id: number) {
