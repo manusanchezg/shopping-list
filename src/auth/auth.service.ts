@@ -8,7 +8,7 @@ import { AuthResponse } from './types/auth-response.type';
 import { User } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { SignUpInput, LogInInput } from './dto/inputs';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
