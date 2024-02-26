@@ -24,13 +24,25 @@ export const SEED_USERS = [
 
 export const SEED_LISTS = [
   {
-    name: 'supermarket',
+    name: 'Maria',
+    address: 'Your address 123',
+    date: new Date(),
+    available_hours: '10:00-16:00',
+    total_amount: 12345,
   },
   {
-    name: 'groceries',
+    name: 'Pedro',
+    address: 'Your address 123',
+    date: new Date(),
+    available_hours: '10:00-16:00',
+    total_amount: 12345,
   },
   {
-    name: 'weekend',
+    name: 'Juanito',
+    address: 'Your address 123',
+    date: new Date(),
+    available_hours: '10:00-16:00',
+    total_amount: 12345,
   },
 ];
 

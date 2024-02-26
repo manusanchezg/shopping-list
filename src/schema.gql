@@ -125,10 +125,22 @@ input UpdateItemInput {
 
 input CreateListInput {
   name: String!
+  address: String!
+  date: DateTime!
+  available_hours: String!
+  total_amount: Float!
+  is_payed: Boolean = false
+  completed: Boolean = false
 }
 
 input UpdateListInput {
   name: String
+  address: String
+  date: DateTime
+  available_hours: String
+  total_amount: Float
+  is_payed: Boolean = false
+  completed: Boolean = false
   id: ID!
 }
 

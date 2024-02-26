@@ -106,7 +106,7 @@ export class SeedService {
     return lists[0];
   }
 
-  async loadListItems(list: List, items: Item[]) {
+  async loadListItems(list: any, items: Item[]) {
     for (const item of items) {
       this.listItemsService.create({
         // random 1 & 0 values made boolean
