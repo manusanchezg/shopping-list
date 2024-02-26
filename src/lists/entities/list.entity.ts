@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, Int, ID, Float } from '@nestjs/graphql';
 import {
   Column,
   Entity,
@@ -20,6 +20,30 @@ export class List {
   @Column()
   @Field(() => String)
   name: string;
+
+  @Column()
+  @Field(() => String)
+  address: string;
+
+  @Column()
+  @Field(() => Date)
+  date: Date;
+
+  @Column()
+  @Field(() => String)
+  available_hours: string;
+
+  @Column()
+  @Field(() => Float)
+  total_amount: number;
+
+  @Column({ nullable: true, default: false })
+  @Field(() => Boolean, { nullable: true, defaultValue: false })
+  is_payed?: boolean = false;
+
+  @Column({ type: 'boolean', nullable: true, default: false })
+  @Field(() => Boolean, { nullable: true, defaultValue: false })
+  completed?: boolean = false;
 
   // Relation, index(userId-list-index)
   @ManyToOne(() => User, (user) => user.lists, { nullable: false, lazy: true })

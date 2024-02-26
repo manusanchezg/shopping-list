@@ -34,10 +34,21 @@ type Item {
 type List {
   id: ID!
   name: String!
+  address: String!
+  date: DateTime!
+  available_hours: String!
+  total_amount: Float!
+  is_payed: Boolean
+  completed: Boolean
   user: User!
   items(offset: Int = 0, limit: Int = 10, search: String): [ListItem!]!
   totalItems: Float!
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type ListItem {
   id: ID!

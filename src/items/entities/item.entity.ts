@@ -20,7 +20,7 @@ export class Item {
   @Column()
   @Field(() => String)
   name: string;
-
+  // ! Commented because it's alreaady in listItem
   // @Column()
   // @Field(() => Float)
   // quantity: number;
