@@ -29,6 +29,7 @@ export const SEED_LISTS = [
     date: new Date(),
     available_hours: '10:00-16:00',
     total_amount: 12345,
+    delivery_driver: "Diego"
   },
   {
     name: 'Pedro',
@@ -36,6 +37,8 @@ export const SEED_LISTS = [
     date: new Date(),
     available_hours: '10:00-16:00',
     total_amount: 12345,
+    delivery_driver: "Diego"
+
   },
   {
     name: 'Juanito',
@@ -43,6 +46,8 @@ export const SEED_LISTS = [
     date: new Date(),
     available_hours: '10:00-16:00',
     total_amount: 12345,
+    delivery_driver: "Eliana"
+
   },
 ];
 

@@ -37,6 +37,10 @@ export class List {
   @Field(() => Float)
   total_amount: number;
 
+  @Column()
+  @Field(() => String)
+  delivery_driver: string
+
   @Column({ nullable: true, default: false })
   @Field(() => Boolean, { nullable: true, defaultValue: false })
   is_payed?: boolean = false;

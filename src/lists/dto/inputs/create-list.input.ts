@@ -28,6 +28,10 @@ export class CreateListInput {
   @Min(0)
   total_amount: number;
 
+  @Field(() => String)
+  @IsNotEmpty()
+  delivery_driver: string
+
   @Field(() => Boolean, { nullable: true, defaultValue: false })
   is_payed?: boolean = false;
 
